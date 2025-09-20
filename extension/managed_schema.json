@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "tenantId": { "type": "string" },
+    "flags":    { "type": "object" },
+    "updateUrl":{ "type": "string" }
+  }
+}
+
