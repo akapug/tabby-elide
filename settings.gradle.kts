@@ -4,5 +4,6 @@ include(
     "control-plane:app",
     "control-plane:modules:auth-google",
     "control-plane:modules:release",
-    "control-plane:modules:admin-ui"
+    "control-plane:modules:admin-ui",
+    "control-plane:modules:tasks"
 )

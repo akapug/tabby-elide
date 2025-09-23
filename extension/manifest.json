@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Tabby",
   "version": "0.1.0",
-  "chrome_url_overrides": { "newtab": "public/newtab.html" },
+  "chrome_url_overrides": { "newtab": "newtab.html" },
   "permissions": ["storage", "alarms"],
   "optional_permissions": ["identity"],
   "storage": { "managed_schema": "managed_schema.json" },
@@ -10,5 +10,3 @@
   "icons": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" },
   "host_permissions": ["http://localhost/*", "http://127.0.0.1/*"]
 }
-
-

@@ -15,6 +15,7 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import work.tabby.controlplane.release.registerReleaseRoutes
 import work.tabby.controlplane.auth.registerAuthRoutes
 import work.tabby.controlplane.admin.registerAdminUiRoutes
+import work.tabby.controlplane.tasks.registerTaskRoutes
 import java.security.KeyPair
 import java.security.KeyPairGenerator
 import java.util.Base64
@@ -52,6 +53,9 @@ fun main() {
             anyHost()
             allowMethod(HttpMethod.Options)
             allowMethod(HttpMethod.Get)
+            allowMethod(HttpMethod.Post)
+            allowMethod(HttpMethod.Patch)
+            allowMethod(HttpMethod.Delete)
             allowHeader(HttpHeaders.ContentType)
             allowHeader(HttpHeaders.Authorization)
             allowHeader(HttpHeaders.IfNoneMatch)
@@ -70,6 +74,7 @@ fun main() {
             registerAuthRoutes()
             registerReleaseRoutes(jwk, keyPair)
             registerAdminUiRoutes()
+            registerTaskRoutes()
         }
     }.start(wait = true)
 }
@@ -86,4 +91,3 @@ private fun jwkFromKeyPair(kp: KeyPair): Map<String, String> {
         "e" to "AQAB"
     )
 }
-
