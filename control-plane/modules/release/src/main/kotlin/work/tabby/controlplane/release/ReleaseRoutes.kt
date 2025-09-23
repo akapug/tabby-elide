@@ -66,7 +66,8 @@ private fun minimalPayloadJson(tenant: String): String = """
           "tiles": [
             { "type": "announcement", "title": "All-hands 10 AM", "body": "Town Hall in Auditorium A" },
             { "type": "link", "label": "HR Portal", "url": "https://example.com/hr" },
-            { "type": "app", "label": "Jira", "url": "https://jira.example.com", "sso": "saml" }
+            { "type": "app", "label": "Jira", "url": "https://jira.example.com", "sso": "saml" },
+            { "type": "tasks", "title": "Team Tasks" }
           ]
         }
       ]
@@ -76,4 +77,3 @@ private fun minimalPayloadJson(tenant: String): String = """
   "flags": { "search": false }
 }
 """.trimIndent()
-

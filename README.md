@@ -27,20 +27,19 @@ Prereqs:
 Control plane (from repo root):
 
 ```
-./gradlew :control-plane:app:run --no-daemon --console=plain --stacktrace
+.\gradlew.bat :control-plane:app:run --no-daemon --console=plain --stacktrace
 ```
 
 Notes:
 - The app auto-selects a free low port under 8080 (prefers 7777, then 7070, 7007, 6502, ...). It logs the chosen port.
 - To force a port (e.g., 4321):
-  - PowerShell: `$env:PORT=4321; ./gradlew :control-plane:app:run`
-  - CMD: `set PORT=4321 && gradlew :control-plane:app:run`
+  - PowerShell: `$env:PORT=4321; .\gradlew.bat :control-plane:app:run`
+  - CMD: `set PORT=4321 && .\gradlew.bat :control-plane:app:run`
 
 Verify endpoints (replace 7777 with your selected port):
 
 ```
 http://127.0.0.1:7777/healthz
-http://127.0.0.1:7777/.well-known/tabby/keys.json
 http://127.0.0.1:7777/api/v1/releases/dev/latest
 ```
 
@@ -56,6 +55,26 @@ Load in Chrome:
 - Enable Developer mode
 - Load unpacked → select `extension/dist`
 - Open a new tab to see the tiles
+
+## Tasks MVP
+
+The MVP includes a shared task list tile. For local development it persists per-tenant tasks to a JSON file on the control-plane.
+
+Steps to try:
+- Start the control-plane (above). It will serve dev endpoints and choose a local port (e.g. 7777).
+- Build and load the extension (above). Open a new tab.
+- Find the tile "Team Tasks".
+- Add a task with the input field; press Enter or click Add. Toggle done, or delete.
+
+APIs (dev, unauthenticated):
+- `GET /api/v1/tasks/{tenant}` → `{ tasks: Task[] }`
+- `POST /api/v1/tasks/{tenant}` → body `{ text }` → returns created `Task`
+- `PATCH /api/v1/tasks/{tenant}/{id}` → body `{ text?, done? }` → returns updated `Task`
+- `DELETE /api/v1/tasks/{tenant}/{id}` → 204
+
+Notes:
+- Storage path: `${REPO}/control-plane/app/build/data/tasks-<tenant>.json`. Override with `TABBY_DATA_DIR`.
+- CORS is open in dev; the extension auto-discovers the server port.
 
 ## Dev details
 - CORS is enabled on the Ktor app (`Access-Control-Allow-Origin: *`) for local dev

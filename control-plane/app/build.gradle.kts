@@ -20,5 +20,5 @@ dependencies {
     implementation(project(":control-plane:modules:release"))
     implementation(project(":control-plane:modules:auth-google"))
     implementation(project(":control-plane:modules:admin-ui"))
+    implementation(project(":control-plane:modules:tasks"))
 }
-

@@ -3,12 +3,14 @@ import type { Payload, Tile } from './types'
 import Announcement from '../widgets/Announcement'
 import LinkTile from '../widgets/LinkTile'
 import AppTile from '../widgets/AppTile'
+import Tasks from '../widgets/Tasks'
 
 function TileRenderer({ tile }: { tile: Tile }) {
   switch (tile.type) {
     case 'announcement': return <Announcement title={tile.title} body={tile.body} />
     case 'link': return <LinkTile label={tile.label} url={tile.url} />
     case 'app': return <AppTile label={tile.label} url={tile.url} sso={tile.sso} />
+    case 'tasks': return <Tasks title={tile.title} />
     default: return null
   }
 }
@@ -40,7 +42,9 @@ export default function App() {
           sections.map((s, idx) => (
             <div key={idx} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 12, marginBottom: 16 }}>
               {s.tiles.map((t, i) => (
-                <TileRenderer tile={t as Tile} key={i} />
+                <React.Fragment key={i}>
+                  <TileRenderer tile={t as Tile} />
+                </React.Fragment>
               ))}
             </div>
           ))
@@ -49,4 +53,3 @@ export default function App() {
     </div>
   )
 }
-
