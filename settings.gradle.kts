@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 rootProject.name = "tabby-elide"
 
 include(
@@ -7,3 +8,14 @@ include(
     "control-plane:modules:admin-ui",
     "control-plane:modules:tasks"
 )
+=======
+rootProject.name = "tabby-elide"
+
+include(
+    "control-plane:app",
+    "control-plane:modules:auth-google",
+    "control-plane:modules:release",
+    "control-plane:modules:admin-ui",
+    "control-plane:modules:tasks"
+)
+>>>>>>> Stashed changes
